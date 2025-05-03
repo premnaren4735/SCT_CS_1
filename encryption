@@ -1,0 +1,23 @@
+def caesar_cipher(text, shift, mode="encrypt"):
+    result = ""
+    if mode == "decrypt":
+        shift = -shift  # Reverse shift for decryption
+    
+    for char in text:
+        if char.isalpha():
+            base = ord('A') if char.isupper() else ord('a')
+            result += chr((ord(char) - base + shift) % 26 + base)
+        else:
+            result += char  # Keep spaces and symbols unchanged
+    
+    return result
+
+# User input
+text = input("Enter text: ")
+shift = int(input("Enter shift value: "))
+choice = input("Choose operation (encrypt/decrypt): ").lower()
+
+if choice in ["encrypt", "decrypt"]:
+    print(f"Result: {caesar_cipher(text, shift, choice)}")
+else:
+    print("Invalid choice.")
